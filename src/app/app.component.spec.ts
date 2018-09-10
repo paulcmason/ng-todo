@@ -8,6 +8,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { RouterTestingModule } from "@angular/router/testing";
 import { routes } from './app-routing.module';
 import { Router } from '@angular/router';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 describe('AppComponent', () => {
 
@@ -22,6 +23,7 @@ describe('AppComponent', () => {
         HeroesComponent,
         HeroDetailComponent,
         MessagesComponent,
+        DashboardComponent,
       ],
       imports: [
         FormsModule,
