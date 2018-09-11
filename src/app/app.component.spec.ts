@@ -1,13 +1,17 @@
 import { TestBed, async } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from "@angular/router/testing";
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-data.service';
 import { AppComponent } from './app.component';
 import { Location } from '@angular/common';
 import { HeroesComponent } from './heroes/heroes.component';
-import { FormsModule } from '@angular/forms';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { MessagesComponent } from './messages/messages.component';
-import { RouterTestingModule } from "@angular/router/testing";
 import { routes } from './app-routing.module';
-import { Router } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 describe('AppComponent', () => {
@@ -23,11 +27,19 @@ describe('AppComponent', () => {
         HeroesComponent,
         HeroDetailComponent,
         MessagesComponent,
-        DashboardComponent,
+        DashboardComponent
       ],
       imports: [
         FormsModule,
-        RouterTestingModule.withRoutes(routes)
+        RouterTestingModule.withRoutes(routes),
+        HttpClientModule,
+ 
+        // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
+        // and returns simulated server responses.
+        // Remove it when a real server is ready to receive requests.
+        HttpClientInMemoryWebApiModule.forRoot(
+          InMemoryDataService, { dataEncapsulation: false }
+        )
       ]
     }).compileComponents();
     router = TestBed.get(Router);
