@@ -20,7 +20,7 @@ namespace heroes.Migrations
 
             modelBuilder.Entity("heroes.Models.Hero", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 

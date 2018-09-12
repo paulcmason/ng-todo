@@ -11,7 +11,7 @@ namespace heroes.Migrations
                 name: "Heroes",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     IsComplete = table.Column<bool>(nullable: false)

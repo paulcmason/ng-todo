@@ -29,16 +29,16 @@ namespace heroes.Controllers
 
         // GET api/heroes
         [HttpGet]
-        public ActionResult<IEnumerable<string>> List()
+        public ActionResult<IEnumerable<Hero>> List()
         {
-            return new string[] { "value1", "value2" };
+            return _context.Heroes.ToList();
         }
 
         // GET api/heroes/5
         [HttpGet("{id}", Name="GetHero")]
-        public ActionResult<string> Get(int id)
+        public ActionResult<Hero> Get(int id)
         {
-            return "value";
+            return _context.Heroes.FirstOrDefault(h => h.Id == id);
         }
 
         // POST api/heroes
@@ -59,8 +59,17 @@ namespace heroes.Controllers
 
         // DELETE api/heroes/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            var todo = _context.Heroes.Find(id);
+            if (todo == null)
+            {
+                return NotFound();
+            }
+
+            _context.Heroes.Remove(todo);
+            _context.SaveChanges();
+            return NoContent();
         }
     }
 }
