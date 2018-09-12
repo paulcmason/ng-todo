@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using heroes.Models;
 
 namespace heroes.Controllers
 {
@@ -10,15 +11,31 @@ namespace heroes.Controllers
     [ApiController]
     public class HeroesController : ControllerBase
     {
+
+        private readonly HeroContext _context;
+
+        public HeroesController(HeroContext context)
+        {
+            _context = context;
+
+            if (_context.Heroes.Count() == 0)
+            {
+                // Create a new TodoItem if collection is empty,
+                // which means you can't delete all TodoItems.
+                _context.Heroes.Add(new Hero { Name = "Item1" });
+                _context.SaveChanges();
+            }
+        }
+
         // GET api/heroes
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<IEnumerable<string>> List()
         {
             return new string[] { "value1", "value2" };
         }
 
         // GET api/heroes/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name="GetHero")]
         public ActionResult<string> Get(int id)
         {
             return "value";
@@ -26,8 +43,12 @@ namespace heroes.Controllers
 
         // POST api/heroes
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Create(Hero item)
         {
+            _context.Heroes.Add(item);
+            _context.SaveChanges();
+
+            return CreatedAtRoute("GetHero", new { id = item.Id }, item);
         }
 
         // PUT api/heroes/5

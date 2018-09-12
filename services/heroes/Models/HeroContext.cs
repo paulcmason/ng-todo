@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace TodoApi.Models
+namespace heroes.Models
 {
     public class HeroContext : DbContext
     {
-        public TodoContext(DbContextOptions<TodoContext> options)
+        public HeroContext(DbContextOptions<HeroContext> options)
             : base(options)
         {
         }
