@@ -1,0 +1,15 @@
+version: '3.2'
+
+services:
+  db:
+    build: .
+    image: apteco/mssqldev
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: Very_Secret_Password
+      MSSQL_DB: Heroes
+      MSSQL_USER: hero_service
+      MSSQL_PASSWORD: Not_As_Secret_Password
+    ports:
+      - "1433:1433"
+    container_name: mssqldev
