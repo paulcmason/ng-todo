@@ -1,0 +1,20 @@
+@startuml
+actor user
+
+agent client [
+    Angular App
+]
+
+cloud cloud {
+    agent heroService [
+        Hero API Service
+    ]
+    database heroDB [
+        Hero Database
+    ]
+}
+
+user -- client
+client -- heroService
+heroService -- heroDB
+@enduml
