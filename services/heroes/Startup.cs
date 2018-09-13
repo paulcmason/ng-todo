@@ -20,16 +20,27 @@ namespace heroes
             var connection = "Data Source=localhost;Initial Catalog=Heroes;Integrated Security=False;User Id=hero_service;Password=Not_As_Secret_Password;MultipleActiveResultSets=True";
             services.AddDbContext<HeroContext>
                 (options => options.UseSqlServer(connection));
+            
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin",
+                    builder => builder
+                        .WithOrigins("http://localhost:4200")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                );
+            });
         }
 
         public void Configure(IApplicationBuilder app)
         {
-            app.UseMvc();
+            app.UseCors("AllowSpecificOrigin");
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
+            app.UseMvc();
         }
     }
 }
