@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start-in-docker": "ng serve --host 0.0.0.0 --poll 1000",
+    "start-in-docker": "ng serve --host 0.0.0.0 --poll 5000",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
