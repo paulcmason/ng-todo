@@ -1,0 +1,5 @@
+FROM microsoft/dotnet:sdk
+ENV DOTNET_USE_POLLING_FILE_WATCHER 1
+WORKDIR /app
+EXPOSE 5000
+ENTRYPOINT [ "/bin/bash" ]

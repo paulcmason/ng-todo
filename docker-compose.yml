@@ -1,0 +1,38 @@
+version: '3.2'
+
+services:
+  db:
+    build: ./db/
+    image: heroesdb
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: Very_Secret_Password
+      MSSQL_DB: Heroes
+      MSSQL_USER: hero_service
+      MSSQL_PASSWORD: Not_As_Secret_Password
+    ports:
+      - "1433:1433"
+    container_name: mssqldev
+  hero-service:
+    build: ./services/heroes/
+    image: hero-service
+    volumes:
+      - ./services/heroes:/app
+      - /app/bin
+      - /app/obj
+    command: 
+      - ./migrate-db-and-run.sh
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+  hero-app:
+    build: ./client
+    image: hero-app
+    working_dir: /home/node/app
+    volumes:
+      - ./client/:/home/node/app
+    command: 
+      - "npm install && npm run start-in-docker"
+    ports:
+      - "4200:4200"

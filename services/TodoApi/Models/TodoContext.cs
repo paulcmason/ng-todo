@@ -2,13 +2,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TodoApi.Models
 {
-    public class HeroContext : DbContext
+    public class TodoContext : DbContext
     {
         public TodoContext(DbContextOptions<TodoContext> options)
             : base(options)
         {
         }
 
-        public DbSet<Hero> Heroes { get; set; }
+        public DbSet<TodoItem> TodoItems { get; set; }
     }
 }
