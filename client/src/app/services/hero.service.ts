@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MessageService } from './message.service';
-import { Hero } from './hero';
+import { Hero } from '../models/hero';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -16,8 +16,7 @@ export class HeroService {
 
   private httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*'
+      'Content-Type': 'application/json'
     })
   };
 

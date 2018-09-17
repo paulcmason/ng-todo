@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from '../in-memory-data.service';
+import { InMemoryDataService } from '../../in-memory-data.service';
 import { DashboardComponent } from './dashboard.component';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -14,7 +14,7 @@ describe('DashboardComponent', () => {
       imports: [
         RouterTestingModule,
         HttpClientModule,
- 
+
         // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
         // and returns simulated server responses.
         // Remove it when a real server is ready to receive requests.
@@ -22,9 +22,9 @@ describe('DashboardComponent', () => {
           InMemoryDataService, { dataEncapsulation: false }
         )
       ],
-      declarations: [ DashboardComponent ]
+      declarations: [DashboardComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
