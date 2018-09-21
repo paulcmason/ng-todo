@@ -21,7 +21,7 @@ services:
       - /app/bin
       - /app/obj
     command: 
-      - ./migrate-db-and-run.sh
+      - /bootstrap/migrate-db-and-run.sh
     ports:
       - "5000:5000"
     depends_on:
