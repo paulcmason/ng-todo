@@ -7,6 +7,10 @@ WORKDIR /usr/config
 # Bundle config source
 COPY . /usr/config
 
+# Sigh.... Sort windows file line endings...
+RUN apt-get update && apt-get install -y dos2unix
+RUN find . -type f -print0 | xargs -0 dos2unix
+
 # Grant permissions for to our scripts to be executable
 RUN chmod +x /usr/config/entrypoint.sh
 RUN chmod +x /usr/config/configure-db.sh

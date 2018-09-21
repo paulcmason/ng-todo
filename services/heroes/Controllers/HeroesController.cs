@@ -22,7 +22,7 @@ namespace heroes.Controllers
             {
                 // Create a new TodoItem if collection is empty,
                 // which means you can't delete all TodoItems.
-                _context.Heroes.Add(new Hero { Name = "Item1" });
+                _context.Heroes.Add(new Hero { Name = "Bananaman" });
                 _context.SaveChanges();
             }
         }
